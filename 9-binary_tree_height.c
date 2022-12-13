@@ -1,7 +1,8 @@
 #include "binary_trees.h"
 
 void find_height(
-		const binary_tree_t *tree, size_t *height, size_t curr_height);
+		const binary_tree_t *tree, size_t *height,
+		size_t curr_height, binary_tree_t *root_node);
 
 
 /**
@@ -12,10 +13,17 @@ void find_height(
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
+	binary_tree_t *root_node = (binary_tree_t *)tree;
 	static size_t height;
 	size_t curr_height = 0, ret_height;
 
-	find_height(tree, &height, curr_height);
+	if (tree == NULL)
+	{
+		return (0);
+	}
+
+	find_height(tree, &height, curr_height, root_node);
+	/* printf("##################\n"); */
 
 	ret_height = height;
 	height = 0;
@@ -23,32 +31,41 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	return (ret_height);
 }
 
-void find_height(const binary_tree_t *tree, size_t *height, size_t curr_height)
+
+
+
+/**
+ * find_height - recursively evaluate the height of different paths.
+ * @tree: the topmost node.
+ * @height: address where height will be stored.
+ * @curr_height: current height in the path.
+ * @root_node: address of the original node.
+ */
+void find_height(
+		const binary_tree_t *tree, size_t *height,
+		size_t curr_height, binary_tree_t *root_node)
 {
 	size_t node_depth = 0;
 
 	if (tree == NULL)
 	{
 		/* Base case; set height of longest path */
+		/* printf("h: %zu ch: %zu\n", *height, curr_height); */
 		*height = curr_height > *height ? curr_height : *height;
 		curr_height = 0;  /* reset for the next path */
 		return;
 	}
 
-	if (tree->left)
+	if (root_node != tree)
 	{
 		curr_height += 1;
 		node_depth = curr_height;
 	}
 
-	find_height(tree->left, height, curr_height);  /* recursively traverse left tree */
+	find_height(tree->left, height, curr_height, root_node);
 
 	curr_height = node_depth;
+	/* printf("node depth after left: %zu\n", node_depth); */
 
-	if (tree->right)
-	{
-		curr_height += 1;
-		node_depth = curr_height;
-	}
-	find_height(tree->right, height, curr_height); /* recursively traverse right tree */
+	find_height(tree->right, height, curr_height, root_node);
 }
