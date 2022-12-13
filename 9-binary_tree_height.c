@@ -23,7 +23,6 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	}
 
 	find_height(tree, &height, curr_height, root_node);
-	/* printf("##################\n"); */
 
 	ret_height = height;
 	height = 0;
@@ -50,7 +49,6 @@ void find_height(
 	if (tree == NULL)
 	{
 		/* Base case; set height of longest path */
-		/* printf("h: %zu ch: %zu\n", *height, curr_height); */
 		*height = curr_height > *height ? curr_height : *height;
 		curr_height = 0;  /* reset for the next path */
 		return;
@@ -65,7 +63,6 @@ void find_height(
 	find_height(tree->left, height, curr_height, root_node);
 
 	curr_height = node_depth;
-	/* printf("node depth after left: %zu\n", node_depth); */
 
 	find_height(tree->right, height, curr_height, root_node);
 }
