@@ -18,4 +18,6 @@
 
 * 8-binary_tree_postorder.c: goes through a binary tree using post-order traversal.
 
+* 9-binary_tree_height.c: measures the height of a binary tree.
+
 
