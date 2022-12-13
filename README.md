@@ -6,4 +6,6 @@
 
 * 2-binary_tree_insert_right.c: inserts a node as the right-child of another node.
 
+* 3-binary_tree_delete.c: deletes an entire binary tree.
+
 
