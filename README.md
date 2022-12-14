@@ -32,4 +32,6 @@
 
 * 15-binary_tree_is_full.c: checks if a binary tree is full.
 
+* 16-binary_tree_is_perfect.c: checks if a binary tree is perfect.
+
 
