@@ -36,4 +36,6 @@
 
 * 17-binary_tree_sibling.c: finds the sibling of a node.
 
+* 18-binary_tree_uncle.c: finds the uncle of a node.
+
 
