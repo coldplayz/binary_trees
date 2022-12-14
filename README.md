@@ -30,4 +30,6 @@
 
 * 14-binary_tree_balance.c: measures the balance factor of a binary tree.
 
+* 15-binary_tree_is_full.c: checks if a binary tree is full.
+
 
