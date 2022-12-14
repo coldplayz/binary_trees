@@ -28,4 +28,6 @@
 
 * 13-binary_tree_nodes.c: counts the nodes with at least 1 child in a binary tree.
 
+* 14-binary_tree_balance.c: measures the balance factor of a binary tree.
+
 
