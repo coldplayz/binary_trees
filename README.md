@@ -34,4 +34,6 @@
 
 * 16-binary_tree_is_perfect.c: checks if a binary tree is perfect.
 
+* 17-binary_tree_sibling.c: finds the sibling of a node.
+
 
