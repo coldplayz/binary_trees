@@ -38,4 +38,6 @@
 
 * 18-binary_tree_uncle.c: finds the uncle of a node.
 
+* 100-binary_trees_ancestor.c: finds the lowest common ancestor of two nodes.
+
 
