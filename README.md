@@ -44,4 +44,6 @@
 
 * 102-binary_tree_is_complete.c: checks if a binary tree is complete.
 
+* 103-binary_tree_rotate_left.c: performs a left-rotation on a binary tree.
+
 
