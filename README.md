@@ -48,4 +48,6 @@
 
 * 104-binary_tree_rotate_right.c: performs a right-rotation on a binary tree.
 
+* 110-binary_tree_is_bst.c: checks if a binary tree is a valid Binary Search Tree.
+
 
