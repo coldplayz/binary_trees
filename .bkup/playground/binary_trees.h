@@ -82,13 +82,6 @@ binary_tree_t *binary_trees_ancestor(
 		const binary_tree_t *first, const binary_tree_t *second);  /* T19 */
 void binary_tree_levelorder(
 		const binary_tree_t *tree, void (*func)(int));  /* T20 */
-int binary_tree_is_complete(const binary_tree_t *tree);  /* T21 */
-binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);  /* T22 */
-binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);  /* T23 */
-int binary_tree_is_bst(const binary_tree_t *tree);  /* T24 */
-
-/* Binary Search Tree */
-bst_t *bst_insert(bst_t **tree, int value);  /* T25 */
 
 
 

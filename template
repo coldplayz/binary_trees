@@ -1,0 +1,13 @@
+		if (value > curr_node->n)
+		{
+			direction = "right";
+			parent = curr_node;
+			curr_node = curr_node->right;
+			if (curr_node == NULL)
+			{
+				/* insert at parent right */
+				parent->right = new_node;
+				new_node->parent = parent;
+				return (new_node);
+			}
+		}
