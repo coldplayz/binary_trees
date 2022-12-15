@@ -1,5 +1,8 @@
 #include "binary_trees.h"
 
+#ifndef BST_INSERT
+#define BST_INSERT
+
 void insert_at_parent(bst_t **new_node, bst_t **field, bst_t *parent);
 
 /**
@@ -92,3 +95,5 @@ void insert_at_parent(bst_t **new_node, bst_t **field, bst_t *parent)
 	*field = *new_node;
 	(*new_node)->parent = parent;
 }
+
+#endif
