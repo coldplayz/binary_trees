@@ -55,8 +55,6 @@ binary_tree_t *binary_trees_ancestor(
 
 
 
-#ifndef BT_DEPTH
-#define BT_DEPTH
 
 /**
  * binary_tree_depth - measures the depth of a node in a binary tree.
@@ -85,4 +83,3 @@ size_t binary_tree_depth(const binary_tree_t *tree)
 	return (depth);
 }
 
-#endif /* BT_DEPTH */
