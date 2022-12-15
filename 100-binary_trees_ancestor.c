@@ -44,10 +44,10 @@ binary_tree_t *binary_trees_ancestor(
 	{
 		if (first == second)
 			return ((binary_tree_t *)first);  /* common ancestor found; second too */
-
 		/* Move/update both nodes and their depths together */
 		first = first->parent;
-		first_depth--, second_depth--;
+		first_depth -= 1;
+		second_depth -= 1;
 		second = second->parent;
 	}
 	return (NULL);  /* nodes likely on different trees, perhaps in a forest */
