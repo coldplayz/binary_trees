@@ -43,7 +43,7 @@ binary_tree_t *binary_trees_ancestor(
 	while (first_depth >= 0)  /* up until the root */
 	{
 		if (first == second)
-			return ((binary_tree_t *)first);  /* common ancestor found; second can also be returned */
+			return ((binary_tree_t *)first);  /* common ancestor found; second too */
 
 		/* Move/update both nodes and their depths together */
 		first = first->parent;
