@@ -23,6 +23,11 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 		return (0);
 	}
 
+	if (!tree->left && !tree_right)
+	{
+		return (0);
+	}
+
 	/* Get a leaf node's depth to initialize @node_depth */
 	tmp_tree = (binary_tree_t *)tree;
 	while (tmp_tree->left)
@@ -70,11 +75,14 @@ void check_perfect(
 			return;
 		}
 
-		if (!tree->parent->left || !tree->parent->right)
+		if (tree->parent)
 		{
-			/* Parent of leaf node not full; root tree not perfect */
-			*is_perfect = 0;
-			return;
+			if (!tree->parent->left || !tree->parent->right)
+			{
+				/* Parent of leaf node not full; root tree not perfect */
+				*is_perfect = 0;
+				return;
+			}
 		}
 	}
 
