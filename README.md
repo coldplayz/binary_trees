@@ -42,4 +42,6 @@
 
 * 101-binary_tree_levelorder.c: goes through a binary tree using level-order traversal.
 
+* 102-binary_tree_is_complete.c: checks if a binary tree is complete.
+
 

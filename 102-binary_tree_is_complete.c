@@ -1,57 +1,83 @@
 #include "binary_trees.h"
 
-void levelorder_traversal(queue_t *queue1, queue_t *queue2, void (*func)(int));
-
+void levelorder_traversal2(queue_t *queue1, queue_t *queue2, int *is_complete);
 
 /**
- * binary_tree_levelorder - goes through a
- * binary tree using level-order traversal.
- * @tree: address of tree to traverse.
- * @func: function to call on each node's value.
+ * binary_tree_is_complete - checks if a binary tree is complete.
+ * @tree: address of tree to check for completeness.
+ *
+ * Return: 1 if @tree is complete; 0 otherwise.
  */
-void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
+int binary_tree_is_complete(const binary_tree_t *tree)
 {
 	queue_t queue1 = {NULL, NULL}, queue2 = {NULL, NULL};
+	int is_complete = 1;
 
-	if (!tree || !func)
+	if (!tree)
 	{
-		return;
+		return (0);
 	}
 
 	enqueue(&queue1, (binary_tree_t *)tree);  /* enqueue the root node */
-	func(tree->n);
+	/* func(tree->n); */
 
-	levelorder_traversal(&queue1, &queue2, func);
+	levelorder_traversal2(&queue1, &queue2, &is_complete);
+
+	return (is_complete);
 }
 
 
 /**
- * levelorder_traversal - traverses a binary tree, one level at a time.
+ * levelorder_traversal2 - traverses a binary tree, one level at a time.
  * @queue1: address of a queue containing
  * nodes whose children belong to present level.
  * @queue2: pointer to queue containing parents of next-level nodes.
- * @func: logic to apply to each visited node's value.
+ * @is_complete: int flag indicating if a binary tree is complete.
  */
-void levelorder_traversal(queue_t *queue1, queue_t *queue2, void (*func)(int))
+void levelorder_traversal2(queue_t *queue1, queue_t *queue2, int *is_complete)
 {
 	queue_node_t *q_node;
 	binary_tree_t *bt_node;
+	int null_present = 0;
 
 	q_node = dequeue(queue1);
-	while (q_node)
+	while (q_node)  /* even if is_complete==0, to enable freeing of queue1 */
 	{
 		bt_node = q_node->node;  /* fetch the binary tree data in the queue_node_t */
 		/* Enqueue both children */
-		if (bt_node->left)
+		if (bt_node->left && *is_complete)
 		{
 			/* There's a left child */
+			if (null_present)
+			{
+				*is_complete = 0;  /* not supposed to have a child at right of NULL */
+			}
+			else
+			{
 			enqueue(queue2, bt_node->left);  /* enqueue in queue2 for next level */
-			func(bt_node->left->n);
+			}
+			/* func(bt_node->left->n); */
 		}
-		if (bt_node->right)
+		else
 		{
-			enqueue(queue2, bt_node->right);
-			func(bt_node->right->n);
+			null_present = 1;
+		}
+
+		if (bt_node->right && *is_complete)
+		{
+			if (null_present)
+			{
+				*is_complete = 0;  /* not supposed to have a child at right of NULL */
+			}
+			else
+			{
+				enqueue(queue2, bt_node->right);
+			}
+			/* func(bt_node->right->n); */
+		}
+		else
+		{
+			null_present = 1;
 		}
 
 		free(q_node);  /* free the dequeued node */
@@ -66,7 +92,13 @@ void levelorder_traversal(queue_t *queue1, queue_t *queue2, void (*func)(int))
 		return;
 	}
 
-	levelorder_traversal(queue2, queue1, func);
+	if (!(*is_complete))
+	{
+		delete_queue(queue2);  /* free any nodes that might have been queued */
+		return;
+	}
+
+	levelorder_traversal2(queue2, queue1, is_complete);
 }
 
 
@@ -157,3 +189,30 @@ int queue_empty(queue_t *queue)
 
 	return (0);
 }
+
+
+
+/**
+ * delete_queue - free all memory occupied by a queue, if any.
+ * @queue: the queue to free.
+ */
+void delete_queue(queue_t *queue)
+{
+	queue_node_t *next_node, *curr_node;
+
+	if (!queue)
+	{
+		return;
+	}
+
+	curr_node = queue->top;
+	next_node = curr_node;
+	while (curr_node)
+	{
+		next_node = curr_node->next;
+		free(curr_node);
+
+		curr_node = next_node;
+	}
+}
+
