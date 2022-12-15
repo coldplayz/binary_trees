@@ -46,4 +46,6 @@
 
 * 103-binary_tree_rotate_left.c: performs a left-rotation on a binary tree.
 
+* 104-binary_tree_rotate_right.c: performs a right-rotation on a binary tree.
+
 
