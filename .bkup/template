@@ -1,13 +1,22 @@
-		if (value > curr_node->n)
+		if (node2remove->left)
 		{
-			direction = "right";
-			parent = curr_node;
-			curr_node = curr_node->right;
-			if (curr_node == NULL)
+			if (replace_root)
 			{
-				/* insert at parent right */
-				parent->right = new_node;
-				new_node->parent = parent;
-				return (new_node);
+				new_root = node2remove->left;
+			}
+			replacement = node2remove->left;
+			replacement->parent = n2r_parent;
+			if (n2r_parent)  /* non-root node to remove */
+			{
+			if (n2r_parent->left == node2remove)
+			{
+				/* Link at left of parent */
+				n2r_parent->left = replacement;
+			}
+			else
+			{
+				/* Link at right */
+				n2r_parent->right = replacement;
+			}
 			}
 		}
