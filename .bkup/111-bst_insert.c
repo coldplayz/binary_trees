@@ -1,5 +1,9 @@
 #include "binary_trees.h"
 
+#ifndef BST_INSERT
+#define BST_INSERT
+
+void insert_at_parent(bst_t **new_node, bst_t **field, bst_t *parent);
 
 /**
  * bst_insert - inserts a value in a Binary Search Tree.
@@ -48,8 +52,7 @@ bst_t *bst_insert(bst_t **tree, int value)
 			if (curr_node == NULL)
 			{
 				/* insert at parent right */
-				parent->right = new_node;
-				new_node->parent = parent;
+				insert_at_parent(&new_node, &parent->right, parent);
 				return (new_node);
 			}
 
@@ -62,8 +65,7 @@ bst_t *bst_insert(bst_t **tree, int value)
 			if (curr_node == NULL)
 			{
 				/* insert at parent left */
-				parent->left = new_node;
-				new_node->parent = parent;
+				insert_at_parent(&new_node, &parent->left, parent);
 				return (new_node);
 			}
 
@@ -86,11 +88,12 @@ bst_t *bst_insert(bst_t **tree, int value)
  * insert_at_parent - assign a new child node to a parent.
  * @new_node: node to assign.
  * @field: the field to assign @new_node to.
- * @tree: double pointer to the tree.
+ * @parent: node with the field @field.
  */
-void insert_at_parent(bst_t **new_node, bst_t **field, bst_t **tree)
+void insert_at_parent(bst_t **new_node, bst_t **field, bst_t *parent)
 {
-	(void)new_node;
-	(void)field;
-	(void)tree;
+	*field = *new_node;
+	(*new_node)->parent = parent;
 }
+
+#endif

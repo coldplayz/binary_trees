@@ -57,4 +57,6 @@
 
 * 113-bst_search.c: searches for a value in a Binary Search Tree.
 
+* 114-bst_remove.c: removes a node from a Binary Search Tree.
+
 

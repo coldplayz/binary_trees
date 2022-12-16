@@ -53,3 +53,8 @@
 * 111-bst_insert.c: inserts a value in a Binary Search Tree.
 
 
+* 112-array_to_bst.c: builds a Binary Search Tree from an array.
+
+* 113-bst_search.c: searches for a value in a Binary Search Tree.
+
+

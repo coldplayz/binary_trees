@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define pd(x) printf("%d\n", x)
+
 /**
  * struct binary_tree_s - Binary tree node
  *
@@ -91,6 +93,7 @@ int binary_tree_is_bst(const binary_tree_t *tree);  /* T24 */
 bst_t *bst_insert(bst_t **tree, int value);  /* T25 */
 bst_t *array_to_bst(int *array, size_t size);  /* T26 */
 bst_t *bst_search(const bst_t *tree, int value);  /* T27 */
+bst_t *bst_remove(bst_t *root, int value);  /* T28 */
 
 
 

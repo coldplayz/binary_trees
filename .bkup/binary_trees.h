@@ -89,6 +89,8 @@ int binary_tree_is_bst(const binary_tree_t *tree);  /* T24 */
 
 /* Binary Search Tree */
 bst_t *bst_insert(bst_t **tree, int value);  /* T25 */
+bst_t *array_to_bst(int *array, size_t size);  /* T26 */
+bst_t *bst_search(const bst_t *tree, int value);  /* T27 */
 
 
 

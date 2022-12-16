@@ -40,14 +40,14 @@ binary_tree_t *binary_trees_ancestor(
 		}
 	}
 	/* At this point, both nodes are at the same depth */
-	while (first_depth >= 0)  /* up until the root */
+	while ((int)first_depth >= 0)  /* up until the root */
 	{
 		if (first == second)
 			return ((binary_tree_t *)first);  /* common ancestor found; second too */
-
 		/* Move/update both nodes and their depths together */
 		first = first->parent;
-		first_depth--, second_depth--;
+		first_depth -= 1;
+		second_depth -= 1;
 		second = second->parent;
 	}
 	return (NULL);  /* nodes likely on different trees, perhaps in a forest */
@@ -55,8 +55,6 @@ binary_tree_t *binary_trees_ancestor(
 
 
 
-#ifndef BT_DEPTH
-#define BT_DEPTH
 
 /**
  * binary_tree_depth - measures the depth of a node in a binary tree.
@@ -85,4 +83,3 @@ size_t binary_tree_depth(const binary_tree_t *tree)
 	return (depth);
 }
 
-#endif /* BT_DEPTH */
