@@ -149,9 +149,18 @@ bst_t *bst_remove(bst_t *root, int value)
 			}
 		}
 
+		if (node2remove->right == replacement)
+		{
+			/* Avoid loop where replacement->right is itself */
+			node2remove->right = replacement->right;
+		}
+
 		/* reset parent of children of node to remove */
 		node2remove->left->parent = replacement;
-		node2remove->right->parent = replacement;
+		if (node2remove->right)
+		{
+			node2remove->right->parent = replacement;
+		}
 
 		/* Detach replacement from current position in tree and close gap */
 		if (replacement->right)
