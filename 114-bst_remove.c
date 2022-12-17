@@ -99,6 +99,20 @@ bst_t *bst_remove(bst_t *root, int value)
 				}
 			}
 		}
+		else
+		{
+			/* Node to remove has a parent but no child */
+			new_root = root;  /* node2remove cannot be same as root; handled already */
+			if (n2r_parent->left == node2remove)
+			{
+				n2r_parent->left = NULL;
+			}
+			else
+			{
+				/* Set right child of parent */
+				n2r_parent->right = NULL;
+			}
+		}
 	}
 	else
 	{

@@ -1,5 +1,6 @@
 #include "binary_trees.h"
 
+bst_t *bst_search(const bst_t *tree, int value);
 
 /**
  * bst_remove - removes a node from a Binary Search Tree.
