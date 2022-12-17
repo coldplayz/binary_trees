@@ -12,7 +12,8 @@ bst_t *bst_search(const bst_t *tree, int value);
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *node2remove, *n2r_parent, *n2r_right, *new_root = NULL, *replacement;
+	bst_t *node2remove, *n2r_parent, *n2r_right;
+	bst_t *new_root = NULL, *replacement = NULL;
 	int replace_root = 0;
 
 	if (!root)
@@ -154,6 +155,11 @@ bst_t *bst_remove(bst_t *root, int value)
 			/* Avoid loop where replacement->right is itself */
 			node2remove->right = replacement->right;
 		}
+		else
+		{
+			/* Set parent of replacement->right already */
+			replacement->right->parent = replacement->parent;
+		}
 
 		/* reset parent of children of node to remove */
 		node2remove->left->parent = replacement;
@@ -163,16 +169,12 @@ bst_t *bst_remove(bst_t *root, int value)
 		}
 
 		/* Detach replacement from current position in tree and close gap */
-		if (replacement->right)
-		{
-			replacement->right->parent = replacement->parent;  /* link right child */
-		}
 		if (replacement->parent->left == replacement)
 		{
 			/* Link parent to grandchild at left */
 			replacement->parent->left = replacement->right;
 		}
-		else
+		else if (replacement->parent->right == replacement)
 		{
 			/* Link at right */
 			replacement->parent->right
